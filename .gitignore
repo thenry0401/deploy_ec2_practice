@@ -1,5 +1,6 @@
 # Custom
 .idea/
+.config_secret/
 
 # Created by https://www.gitignore.io/api/vim,macos,linux,django,python,pycharm
 
