@@ -20,6 +20,8 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 # .config_secret 및 하위 파일 경로
 CONFIG_SECRET_DIR = os.path.join(ROOT_DIR, '.config_secret')
 CONFIG_SECRET_COMMON_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_common.json')
+CONFIG_SECRET_DEBUG_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_debug.json')
+CONFIG_SECRET_DEPLOY_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_deploy.json')
 
 # config_secret 변수에 CONFIG_SECRET_COMMON_FILE 경로의 파일 읽은 값을 할당
 # f = open(CONFIG_SECRET_COMMON_FILE)
@@ -36,10 +38,6 @@ config_secret_common = json.loads(open(CONFIG_SECRET_COMMON_FILE).read())
 # secret_key를 settings_common.json에서 가져온다
 SECRET_KEY = config_secret_common['django']['secret_key']
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
