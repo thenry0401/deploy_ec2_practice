@@ -9,18 +9,32 @@ https://docs.djangoproject.com/en/2.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
-
+import json
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ROOT_DIR = os.path.dirname(BASE_DIR)
+
+# .config_secret 및 하위 파일 경로
+CONFIG_SECRET_DIR = os.path.join(ROOT_DIR, '.config_secret')
+CONFIG_SECRET_COMMON_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_common.json')
+
+# config_secret 변수에 CONFIG_SECRET_COMMON_FILE 경로의 파일 읽은 값을 할당
+# f = open(CONFIG_SECRET_COMMON_FILE)
+# config_secret_string = f.read()
+# config_secret = json.loads(config_secret_string)
+# f.close()
+config_secret_common = json.loads(open(CONFIG_SECRET_COMMON_FILE).read())
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+# secret_key를 settings_common.json에서 가져온다
+SECRET_KEY = config_secret_common['django']['secret_key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -103,9 +117,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
